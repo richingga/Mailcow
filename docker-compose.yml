@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  mailcow-dockerized:
+    container_name: mailcow
+    image: mailcow/mailcow-dockerized:latest
+    restart: always
+    ports:
+      - "8080:80"      # Akses HTTP lokal (untuk Cloudflare Tunnel)
+      - "8443:443"     # Akses HTTPS lokal (untuk Cloudflare Tunnel)
+    volumes:
+      - ./data:/opt/mailcow-dockerized
+    environment:
+      - MAILCOW_HOSTNAME=mail.oxdel.my.id
